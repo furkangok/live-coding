@@ -1,0 +1,21 @@
+.track-list-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  width: 450px;
+}
+
+.track-container {
+  height: 100px;
+  width: 100px;
+
+  margin: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

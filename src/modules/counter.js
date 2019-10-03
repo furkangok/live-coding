@@ -2,11 +2,18 @@ export const INCREMENT_REQUESTED = 'counter/INCREMENT_REQUESTED'
 export const INCREMENT = 'counter/INCREMENT'
 export const DECREMENT_REQUESTED = 'counter/DECREMENT_REQUESTED'
 export const DECREMENT = 'counter/DECREMENT'
+export const SAVE_TRACK_LIST = 'SAVE_TRACK_LIST'
+
+// example complete request url => http://ws.audioscrobbler.com/2.0/?method=track.search&track=tarkan&api_key=dae91d2e755b5e29e7adf81d7897a7d0&format=json
+export const api_key = 'dae91d2e755b5e29e7adf81d7897a7d0'
+export const api_base_url =
+  'http://ws.audioscrobbler.com/2.0/?method=track.search&'
 
 const initialState = {
   count: 0,
   isIncrementing: false,
-  isDecrementing: false
+  isDecrementing: false,
+  trackList: null
 }
 
 export default (state = initialState, action) => {
@@ -35,6 +42,12 @@ export default (state = initialState, action) => {
         ...state,
         count: state.count - 1,
         isDecrementing: !state.isDecrementing
+      }
+
+    case SAVE_TRACK_LIST:
+      return {
+        ...state,
+        trackList: action.payload
       }
 
     default:
@@ -91,5 +104,14 @@ export const decrementAsync = () => {
         type: DECREMENT
       })
     }, 3000)
+  }
+}
+
+export const saveTrackList = payload => {
+  return dispatch => {
+    dispatch({
+      type: SAVE_TRACK_LIST,
+      payload
+    })
   }
 }
